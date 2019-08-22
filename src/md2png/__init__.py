@@ -2,9 +2,10 @@ import re
 import sys
 
 import markdown
-from markdown import etree
 
-import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont
+
+from functools import reduce
 
 BULLET_DIAMETER = 4
 IMAGE_BLOCK_HEIGHT = 1000
@@ -104,7 +105,7 @@ class ImageTreeprocessor(markdown.treeprocessors.Treeprocessor):
 
         if self.image_y + h > self.image.size[1]:
             if self.image_y == 0:
-                print "Image block size too small!  Results will be cropped..."
+                print("Image block size too small!  Results will be cropped...")
                 return
 
             self.new_image_block()
@@ -308,7 +309,7 @@ class ImageTreeprocessor(markdown.treeprocessors.Treeprocessor):
         self.newline()
 
     def handle_unknown(self, node):
-        print "Unknown tag: %s" % node.tag
+        print("Unknown tag: %s" % node.tag)
         self.handle_children(node)
 
     def newline(self, h= -1):
