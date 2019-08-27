@@ -24,11 +24,11 @@ if __name__ == "__main__":
     print("Reading %s" % input_filename)
     f = open(input_filename)
     img = md2png.md2png(f.read(), [(0, 0, width)], {
-        "font_size": 16,
-        "code_font_size": 18,
+        "font_size": 12,
+        "code_font_size": 12,
     })
     f.close()
 
     print("Saving to %s" % output_filename)
-    # img.save(output_filename)
+    img.save(output_filename)
     img.show()
